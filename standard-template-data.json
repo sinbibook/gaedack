@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.0.0",
-    "generatedAt": "2025-11-19T01:30:44.996Z",
+    "version": "1.1.0",
+    "generatedAt": "2025-11-19T01:32:04.950Z",
     "templateType": "full_banner_image_simple",
     "propertyId": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "homepageId": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
@@ -1451,7 +1451,7 @@
                     "isSelected": true
                   }
                 ],
-                "description": "천연 잔디마당에 강아지 친구들이 즐겁게 놀다가는 화이숑네 펜션"
+                "description": "천연 잔디마당에 강아지 친구들이 즐겁게 놀다갈 수 있는 개댁입니다."
               }
             }
           ]
@@ -1675,7 +1675,6 @@
           ]
         }
       }
-    },
-    "id": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
+    }
   }
 }
