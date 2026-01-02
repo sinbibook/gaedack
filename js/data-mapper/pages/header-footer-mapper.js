@@ -159,7 +159,7 @@ class HeaderFooterMapper extends BaseDataMapper {
             const rooms = this.safeGet(this.data, 'rooms');
             if (rooms && rooms.length > 0) {
                 spacesMenu.onclick = () => {
-                    window.location.href = `room.html?id=${rooms[0].id}`;
+                    window.location.href = `../pages/room.html?id=${rooms[0].id}`;
                 };
             }
         }
@@ -170,7 +170,7 @@ class HeaderFooterMapper extends BaseDataMapper {
             const facilities = this.safeGet(this.data, 'property.facilities');
             if (facilities && facilities.length > 0) {
                 specialsMenu.onclick = () => {
-                    window.location.href = `facility.html?id=${facilities[0].id}`;
+                    window.location.href = `../pages/facility.html?id=${facilities[0].id}`;
                 };
             }
         }
@@ -223,7 +223,7 @@ class HeaderFooterMapper extends BaseDataMapper {
                     if (customClickHandler) {
                         customClickHandler(item.id);
                     } else {
-                        window.location.href = `${urlTemplate}?id=${item.id}`;
+                        window.location.href = `../pages/${urlTemplate}?id=${item.id}`;
                     }
                 });
 
@@ -268,7 +268,7 @@ class HeaderFooterMapper extends BaseDataMapper {
                     if (customClickHandler) {
                         customClickHandler(item.id);
                     } else {
-                        window.location.href = `${urlTemplate}?id=${item.id}`;
+                        window.location.href = `../pages/${urlTemplate}?id=${item.id}`;
                     }
                 });
 
@@ -288,7 +288,7 @@ class HeaderFooterMapper extends BaseDataMapper {
             if (window.propertyDataMapper?.navigateToRoom) {
                 window.propertyDataMapper.navigateToRoom(roomId);
             } else {
-                window.location.href = `room.html?id=${roomId}`;
+                window.location.href = `../pages/room.html?id=${roomId}`;
             }
         };
 
@@ -363,8 +363,7 @@ class HeaderFooterMapper extends BaseDataMapper {
     mapFooterInfo() {
         if (!this.isDataLoaded || !this.data.property) return;
 
-        const property = this.data.property;
-        const businessInfo = property.businessInfo;
+        const businessInfo = this.data.property?.businessInfo;
 
         if (!businessInfo) {
             return;
@@ -372,8 +371,9 @@ class HeaderFooterMapper extends BaseDataMapper {
 
         // 전화번호 매핑
         const footerPhone = this.safeSelect('[data-footer-phone]');
-        if (footerPhone && property.contactPhone) {
-            footerPhone.textContent = `숙소 전화번호 : ${property.contactPhone}`;
+        const contactPhone = this.data.property?.contactPhone;
+        if (footerPhone && contactPhone) {
+            footerPhone.textContent = `숙소 전화번호 : ${contactPhone}`;
         }
 
         // 대표자명 매핑

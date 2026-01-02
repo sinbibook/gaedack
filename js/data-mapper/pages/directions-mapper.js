@@ -13,6 +13,11 @@ class DirectionsMapper extends BaseDataMapper {
     }
 
     // ============================================================================
+    // 🔧 HELPER METHODS
+    // ============================================================================
+
+
+    // ============================================================================
     // 🗺️ DIRECTIONS PAGE MAPPINGS
     // ============================================================================
 
@@ -28,12 +33,7 @@ class DirectionsMapper extends BaseDataMapper {
         // Hero 제목 매핑 (customFields에서 우선, 없으면 기본값)
         const heroTitleElement = this.safeSelect('[data-directions-hero-title]');
         if (heroTitleElement) {
-            if (directionsHeroData?.title) {
-                heroTitleElement.textContent = directionsHeroData.title;
-            } else if (this.data.property?.name) {
-                // fallback: 펜션명 + 오시는길
-                heroTitleElement.textContent = `${this.data.property.name} 오시는길`;
-            }
+            heroTitleElement.textContent = this.sanitizeText(directionsHeroData?.title, '오시는길 히어로 타이틀');
         }
 
         // Hero 배경 이미지 매핑 (JSON에서 동적으로)
@@ -61,9 +61,15 @@ class DirectionsMapper extends BaseDataMapper {
             return;
         }
 
-        // sortOrder로 정렬해서 첫 번째 이미지 사용
-        const sortedImages = images.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
-        const firstImage = sortedImages[0];
+        // isSelected가 true인 이미지만 필터링하고 sortOrder로 정렬
+        const selectedImages = this._getSortedSelectedImages(images);
+
+        if (selectedImages.length === 0) {
+            ImageHelpers.applyPlaceholder(heroImageElement);
+            return;
+        }
+
+        const firstImage = selectedImages[0];
 
         if (firstImage?.url) {
             heroImageElement.src = firstImage.url;
@@ -95,7 +101,7 @@ class DirectionsMapper extends BaseDataMapper {
             roadAddressElement.textContent = property.address;
         }
 
-        // 지번 주소 매핑 - 향후 요구사항 변경 시 활성화 예정
+        // 지번 주소 매핑 (동일하게 address 사용)
         // const lotAddressElement = this.safeSelect('[data-directions-lot-address]');
         // if (lotAddressElement && property.address) {
         //     lotAddressElement.textContent = property.address;
@@ -120,10 +126,10 @@ class DirectionsMapper extends BaseDataMapper {
         const notice = directionsData?.notice;
 
         // notice 데이터가 없거나 title/description이 모두 비어있으면 섹션 숨김
-        const hasTitle = notice?.title && notice.title.trim() !== '';
-        const hasDescription = notice?.description && notice.description.trim() !== '';
+        const sanitizedTitle = this.sanitizeText(notice?.title);
+        const sanitizedDescription = this.sanitizeText(notice?.description);
 
-        if (!notice || (!hasTitle && !hasDescription)) {
+        if (!notice || (!sanitizedTitle && !sanitizedDescription)) {
             if (noticeSection) noticeSection.style.display = 'none';
             return;
         }
@@ -134,22 +140,17 @@ class DirectionsMapper extends BaseDataMapper {
         // Notice 제목 매핑
         const noticeTitle = this.safeSelect('[data-directions-notice-title]');
         if (noticeTitle) {
-            noticeTitle.textContent = hasTitle ? notice.title : '';
+            noticeTitle.textContent = sanitizedTitle;
         }
 
         // Notice 설명 매핑
         const noticeDescription = this.safeSelect('[data-directions-notice-description]');
         if (noticeDescription) {
-            noticeDescription.innerHTML = ''; // 기존 콘텐츠 초기화 및 XSS 방지
-            if (hasDescription) {
-                // \n을 <br>로 변환하여 안전하게 줄바꿈 처리
-                const lines = notice.description.split('\n');
-                lines.forEach((line, index) => {
-                    noticeDescription.appendChild(document.createTextNode(line));
-                    if (index < lines.length - 1) {
-                        noticeDescription.appendChild(document.createElement('br'));
-                    }
-                });
+            if (sanitizedDescription) {
+                // XSS 방지 처리 후 줄바꿈을 <br>로 변환
+                noticeDescription.innerHTML = this._formatTextWithLineBreaks(sanitizedDescription);
+            } else {
+                noticeDescription.innerHTML = '';
             }
         }
     }
@@ -262,7 +263,7 @@ class DirectionsMapper extends BaseDataMapper {
             roadAddressElement.textContent = property.address;
         }
 
-        // 지번 주소 매핑 - 향후 요구사항 변경 시 활성화 예정
+        // 지번 주소 매핑 (마지막 주소 항목) - 지번 주소 UI 제거로 주석 처리
         // const lotAddressElement = this.safeSelect('.address-item:last-of-type .address-details p:last-child');
         // if (lotAddressElement && property.address) {
         //     lotAddressElement.textContent = property.address;
@@ -317,39 +318,20 @@ class DirectionsMapper extends BaseDataMapper {
 
         // 메타 태그 업데이트 (페이지별 SEO 적용)
         const property = this.data.property;
-        const directionsData = this.safeGet(this.data, 'homepage.customFields.pages.directions.sections.0.hero');
-        const pageSEO = {
-            title: property?.name ? `오시는길 - ${property.name}` : 'SEO 타이틀',
-            description: directionsData?.description || property?.description || 'SEO 설명'
-        };
+        const pageSEO = property?.name ? { title: `오시는길 - ${property.name}` } : null;
         this.updateMetaTags(pageSEO);
 
-        // OG 이미지 업데이트 (hero 이미지 사용)
-        this.updateOGImage(directionsData);
+        // Open Graph 메타 태그 매핑
+        const directionsData = this.safeGet(this.data, 'homepage.customFields.pages.directions.sections.0');
+        const ogTitle = pageSEO?.title || this.data?.seo?.title || '';
+        const ogDescription = directionsData?.hero?.description || this.data?.seo?.description || '';
+        // isSelected가 true인 이미지 중 첫 번째 이미지 사용
+        const selectedImages = this._getSortedSelectedImages(directionsData?.hero?.images);
+        const ogImage = selectedImages?.[0]?.url || '';
+        this.mapOpenGraphTags(ogTitle, ogDescription, ogImage);
 
         // E-commerce registration 매핑
         this.mapEcommerceRegistration();
-    }
-
-    /**
-     * OG 이미지 업데이트 (directions hero 이미지 사용, 없으면 로고)
-     * @param {Object} directionsData - directions hero 섹션 데이터
-     */
-    updateOGImage(directionsData) {
-        if (!this.isDataLoaded) return;
-
-        const ogImage = this.safeSelect('meta[property="og:image"]');
-        if (!ogImage) return;
-
-        // 우선순위: hero 이미지 > 로고 이미지
-        if (directionsData?.images && directionsData.images.length > 0 && directionsData.images[0]?.url) {
-            ogImage.setAttribute('content', directionsData.images[0].url);
-        } else {
-            const defaultImage = this.getDefaultOGImage();
-            if (defaultImage) {
-                ogImage.setAttribute('content', defaultImage);
-            }
-        }
     }
 
     /**

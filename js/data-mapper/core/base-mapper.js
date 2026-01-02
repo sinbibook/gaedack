@@ -21,7 +21,7 @@ class BaseDataMapper {
         try {
             // 캐시 방지를 위한 타임스탬프 추가
             const timestamp = new Date().getTime();
-            const response = await fetch(`./standard-template-data.json?t=${timestamp}`);
+            const response = await fetch(`../standard-template-data.json?t=${timestamp}`);
             this.data = await response.json();
             this.isDataLoaded = true;
             return this.data;
@@ -51,6 +51,70 @@ class BaseDataMapper {
         return path.split('.').reduce((current, key) => {
             return current && current[key] !== undefined ? current[key] : defaultValue;
         }, obj);
+    }
+
+    /**
+     * 이미지 배열에서 선택된 이미지를 필터링하고 정렬하는 헬퍼 메서드
+     * @param {Array} images - 이미지 배열
+     * @returns {Array} 선택되고 정렬된 이미지 배열
+     */
+    _getSortedSelectedImages(images) {
+        if (!images || !Array.isArray(images)) {
+            return [];
+        }
+        return images
+            .filter(img => img.isSelected)
+            .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+    }
+
+    /**
+     * 값이 비어있는지 확인하는 헬퍼 메서드
+     * @private
+     * @param {any} value - 확인할 값
+     * @returns {boolean} 비어있으면 true
+     */
+    _isEmptyValue(value) {
+        return value === null || value === undefined || value === '';
+    }
+
+    /**
+     * HTML 특수 문자를 이스케이프 처리하는 헬퍼 메서드 (XSS 방지)
+     * @private
+     * @param {string} text - 이스케이프할 텍스트
+     * @returns {string} 이스케이프 처리된 텍스트
+     */
+    _escapeHTML(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    /**
+     * 텍스트를 정제하는 헬퍼 메서드
+     * 빈 값이면 fallback 반환, 아니면 trim된 값 반환
+     * @param {string} text - 정제할 텍스트
+     * @param {string} fallback - 빈 값일 때 반환할 기본값
+     * @returns {string} 정제된 텍스트 또는 fallback
+     */
+    sanitizeText(text, fallback = '') {
+        if (this._isEmptyValue(text)) return fallback;
+        return text.trim();
+    }
+
+    /**
+     * 텍스트의 줄바꿈을 HTML <br> 태그로 변환하는 헬퍼 메서드 (XSS 안전)
+     * @private
+     * @param {string} text - 변환할 텍스트
+     * @param {string} fallback - 빈 값일 때 반환할 기본값
+     * @returns {string} 줄바꿈이 <br>로 변환된 HTML 문자열
+     */
+    _formatTextWithLineBreaks(text, fallback = '') {
+        if (this._isEmptyValue(text)) return fallback;
+        // 앞뒤 공백 제거
+        const trimmedText = text.trim();
+        // 먼저 HTML 특수 문자를 이스케이프 처리한 후 줄바꿈 변환
+        const escapedText = this._escapeHTML(trimmedText);
+        return escapedText.replace(/\n/g, '<br>');
     }
 
     /**
@@ -209,43 +273,17 @@ class BaseDataMapper {
         if (seo.title) {
             const title = this.safeSelect('title');
             if (title) title.textContent = seo.title;
-
-            // OG Title도 같이 업데이트
-            const ogTitle = this.safeSelect('meta[property="og:title"]');
-            if (ogTitle) ogTitle.setAttribute('content', seo.title);
         }
 
         if (seo.description) {
             const metaDescription = this.safeSelect('meta[name="description"]');
             if (metaDescription) metaDescription.setAttribute('content', seo.description);
-
-            // OG Description도 같이 업데이트
-            const ogDescription = this.safeSelect('meta[property="og:description"]');
-            if (ogDescription) ogDescription.setAttribute('content', seo.description);
         }
 
         if (seo.keywords) {
             const metaKeywords = this.safeSelect('meta[name="keywords"]');
             if (metaKeywords) metaKeywords.setAttribute('content', seo.keywords);
         }
-
-        // OG URL은 현재 페이지 URL로 설정
-        const ogUrl = this.safeSelect('meta[property="og:url"]');
-        if (ogUrl) ogUrl.setAttribute('content', window.location.href);
-    }
-
-    /**
-     * 기본 OG 이미지 가져오기 (로고 이미지 사용)
-     */
-    getDefaultOGImage() {
-        if (!this.isDataLoaded) return null;
-
-        const logoImages = this.safeGet(this.data, 'homepage.images.0.logo');
-        if (logoImages && logoImages.length > 0 && logoImages[0]?.url) {
-            return logoImages[0].url;
-        }
-
-        return null;
     }
 
     // ============================================================================
@@ -257,6 +295,42 @@ class BaseDataMapper {
      */
     async mapPage() {
         throw new Error('mapPage() method must be implemented by subclass');
+    }
+
+    /**
+     * Open Graph 메타 태그 매핑 (동적 생성)
+     * @param {string} title - OG title
+     * @param {string} description - OG description
+     * @param {string} imageUrl - OG image URL
+     */
+    mapOpenGraphTags(title = '', description = '', imageUrl = '') {
+        /**
+         * 메타 태그 생성 또는 업데이트 헬퍼 함수
+         * @param {string} property - OG property 이름
+         * @param {string} content - 메타 태그 content 값
+         */
+        const createOrUpdateMeta = (property, content) => {
+            if (!content) return;
+
+            let meta = document.querySelector(`meta[property="${property}"]`);
+            if (!meta) {
+                meta = document.createElement('meta');
+                meta.setAttribute('property', property);
+                document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', content);
+        };
+
+        // OG 메타 태그 생성 또는 업데이트
+        createOrUpdateMeta('og:type', 'website');
+        createOrUpdateMeta('og:title', title);
+        createOrUpdateMeta('og:description', description);
+        createOrUpdateMeta('og:image', imageUrl);
+        createOrUpdateMeta('og:url', window.location.href);
+
+        if (this.data?.property?.name) {
+            createOrUpdateMeta('og:site_name', this.data.property.name);
+        }
     }
 
     /**

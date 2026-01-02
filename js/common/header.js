@@ -3,15 +3,12 @@
  * 헤더 컴포넌트 기능
  */
 
+// Constants
+const YBS_BOOKING_URL_BASE = 'https://rev.yapen.co.kr/external?ypIdx=';
+
 // Header functionality - Make functions global for dynamic loading
 let mobileMenuOpen = false;
 let subMenusVisible = false;
-
-// 모든 페이지가 루트에 있으므로 경로 통일
-const basePath = './';
-
-// YBS 예약 URL 상수
-const YBS_BOOKING_URL_BASE = 'https://rev.yapen.co.kr/external?ypIdx=';
 
 // Global navigation function
 window.navigateTo = function(page) {
@@ -22,11 +19,11 @@ window.navigateTo = function(page) {
 
     // Handle special cases
     if (page === 'home') {
-        window.location.href = `${basePath}index.html`;
+        window.location.href = '../pages/index.html';
         return;
     }
     if (page === 'reservation-info') {
-        window.location.href = `${basePath}reservation.html`;
+        window.location.href = '../pages/reservation.html';
         return;
     }
 
@@ -35,7 +32,7 @@ window.navigateTo = function(page) {
         window.navigateToPage(page);
     } else {
         // Direct navigation fallback
-        window.location.href = `${basePath}${page}.html`;
+        window.location.href = `../pages/${page}.html`;
     }
 
     closeMobileMenu();
@@ -174,7 +171,7 @@ window.openReservation = function() {
         }
     } else {
         if (!isPreviewMode) {
-            window.location.href = `${basePath}reservation.html`;
+            window.location.href = '../pages/reservation.html';
         }
     }
 };
@@ -240,6 +237,9 @@ window.initializeReservationButtons = function() {
     });
 };
 
+/**
+ * 페이지 버튼 초기화 통합 함수
+ */
 function initializePageButtons() {
     updateHeader();
     initializeReservationButtons();

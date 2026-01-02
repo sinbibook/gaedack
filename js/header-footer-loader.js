@@ -3,16 +3,14 @@ class HeaderFooterLoader {
     constructor() {
         this.headerLoaded = false;
         this.footerLoaded = false;
-        // 모든 페이지가 루트에 있으므로 경로 통일
-        this.basePath = './';
     }
-
+    
     // Extract content from header.html
     async loadHeader() {
         if (this.headerLoaded) return;
 
         try {
-            const response = await fetch(`${this.basePath}common/header.html`);
+            const response = await fetch('./common/header.html');
             const html = await response.text();
             
             // Parse the HTML and extract the header element and mobile menu
@@ -50,7 +48,7 @@ class HeaderFooterLoader {
                     const bookingBtnClone = fixedBookingBtn.cloneNode(true);
                     document.body.appendChild(bookingBtnClone);
                 }
-
+                
                 // Add styles to head
                 styleElements.forEach(style => {
                     const newStyle = document.createElement('style');
@@ -62,10 +60,10 @@ class HeaderFooterLoader {
                 linkElements.forEach(link => {
                     const newLink = document.createElement('link');
                     newLink.rel = 'stylesheet';
-                    newLink.href = link.getAttribute('href');
+                    newLink.href = link.href;
                     document.head.appendChild(newLink);
                 });
-
+                
                 // Add scripts to body and wait for them to load
                 const scriptPromises = Array.from(scriptElements).map(script => {
                     return new Promise((resolve, reject) => {
@@ -73,7 +71,7 @@ class HeaderFooterLoader {
 
                         // Handle external script files (src attribute)
                         if (script.src) {
-                            newScript.src = script.getAttribute('src');
+                            newScript.src = script.src;
                             newScript.onload = resolve;
                             newScript.onerror = reject;
                         } else {
@@ -115,7 +113,7 @@ class HeaderFooterLoader {
         if (this.footerLoaded) return;
 
         try {
-            const response = await fetch(`${this.basePath}common/footer.html`);
+            const response = await fetch('./common/footer.html');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -129,7 +127,6 @@ class HeaderFooterLoader {
             const parsedFooterElement = doc.querySelector('footer');
             const styleElements = doc.querySelectorAll('head style');
             const linkElements = doc.querySelectorAll('head link[rel="stylesheet"]');
-            const scriptElements = doc.querySelectorAll('script');
             
             if (parsedFooterElement) {
                 // Create footer container at the bottom of body
@@ -159,25 +156,10 @@ class HeaderFooterLoader {
                 linkElements.forEach(link => {
                     const newLink = document.createElement('link');
                     newLink.rel = 'stylesheet';
-                    newLink.href = link.getAttribute('href');
+                    newLink.href = link.href;
                     document.head.appendChild(newLink);
                 });
-
-                // Add scripts to body
-                scriptElements.forEach(script => {
-                    const newScript = document.createElement('script');
-
-                    // Handle external script files (src attribute)
-                    if (script.src || script.getAttribute('src')) {
-                        newScript.src = script.getAttribute('src');
-                    } else {
-                        // Handle inline scripts
-                        newScript.textContent = script.textContent;
-                    }
-
-                    document.body.appendChild(newScript);
-                });
-
+                
                 // Ensure proper footer positioning
                 this.ensureFooterPositioning();
                 
@@ -343,6 +325,11 @@ class HeaderFooterLoader {
 
     // Apply HeaderFooterMapper for dynamic content mapping
     async applyHeaderFooterMapping() {
+        // iframe 환경에서는 PreviewHandler가 담당하므로 여기서 실행하지 않음
+        if (window.parent !== window) {
+            return;
+        }
+
         // HeaderFooterMapper가 로드되어 있는지 확인
         if (typeof HeaderFooterMapper === 'undefined') {
             console.warn('⚠️ HeaderFooterMapper not loaded, skipping header/footer mapping');
@@ -350,38 +337,12 @@ class HeaderFooterLoader {
         }
 
         try {
-            // iframe 환경(미리보기)인 경우
-            if (window.parent !== window) {
-                // PreviewHandler가 데이터를 제공할 때까지 대기
-                // 최대 5초 동안 100ms 간격으로 확인
-                let attempts = 0;
-                const maxAttempts = 50;
+            // HeaderFooterMapper 인스턴스 생성 및 초기화
+            const headerFooterMapper = new HeaderFooterMapper();
+            await headerFooterMapper.initialize();
 
-                const waitForData = async () => {
-                    // PreviewHandler가 데이터를 받았는지 확인
-                    if (window.previewHandler?.currentData) {
-                        // 데이터가 있으면 즉시 매핑
-                        const headerFooterMapper = new HeaderFooterMapper();
-                        headerFooterMapper.data = window.previewHandler.currentData;
-                        headerFooterMapper.isDataLoaded = true;
-                        await headerFooterMapper.mapHeaderFooter();
-                        return;
-                    }
-
-                    // 아직 데이터가 없으면 재시도
-                    attempts++;
-                    if (attempts < maxAttempts) {
-                        setTimeout(waitForData, 100);
-                    }
-                };
-
-                waitForData();
-            } else {
-                // 일반 환경에서는 기존 로직 유지
-                const headerFooterMapper = new HeaderFooterMapper();
-                await headerFooterMapper.initialize();
-                await headerFooterMapper.mapHeaderFooter();
-            }
+            // Header와 Footer 매핑 실행
+            await headerFooterMapper.mapHeaderFooter();
         } catch (error) {
             console.error('❌ Header/Footer mapping failed:', error);
         }

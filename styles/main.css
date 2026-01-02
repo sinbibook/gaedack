@@ -1,5 +1,10 @@
 /* Main Page Specific Styles */
 
+/* Dynamic Content Sections */
+#dynamic-content-sections {
+  background-color: var(--color-primary);
+}
+
 /* Hero Section */
 .hero-section {
   position: relative;
@@ -313,11 +318,9 @@
     width: 56px;
     height: 56px;
   }
-
   .nav-button.prev {
     left: 32px;
   }
-
   .nav-button.next {
     right: 32px;
   }

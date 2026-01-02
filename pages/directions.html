@@ -8,10 +8,12 @@
     <title>오시는길 - 숙소명</title>
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="styles/common.css" as="style">
-    <link rel="preload" href="styles/directions.css" as="style">
-    <link rel="stylesheet" href="styles/common.css">
-    <link rel="stylesheet" href="styles/directions.css">
+    <link rel="preload" href="../styles/theme.css" as="style">
+    <link rel="preload" href="../styles/common.css" as="style">
+    <link rel="preload" href="../styles/directions.css" as="style">
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/directions.css">
   <!-- Open Graph Meta Tags for Social Media -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="가평 개댁 펜션 - 오시는길" />
@@ -38,6 +40,7 @@
                      alt="Mountain Landscape"
                      loading="eager">
             </div>
+
             <!-- Hero Content -->
             <div class="hero-content">
                 <!-- Back Button -->
@@ -54,7 +57,7 @@
         </section>
 
         <!-- Content Section -->
-        <section class="content-section">
+        <section class="content-section page-content">
             <div class="content-container">
                 <!-- Resort Info Section -->
                 <div class="resort-info">
@@ -73,7 +76,7 @@
                                         <p data-directions-road-address></p>
                                     </div>
                                 </div>
-                                <!-- 향후 지번 주소 활성화 예정 -->
+                                <!-- 추후 지번 사용예정 -->
                                 <!-- <div class="address-item">
                                     <svg class="address-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.158.69-.158 1.006 0l4.994 2.497c.317.158.69.158 1.007 0z" />
@@ -87,6 +90,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- custom information section -->
                 <div class="notice-section" data-directions-notice-section>
                     <h3 class="map-title notice-title" data-directions-notice-title></h3>
@@ -100,7 +104,7 @@
         </section>
 
         <!-- Map Section -->
-        <section class="map-section">
+        <section class="map-section page-content">
             <div class="map-container">
                 <h3 class="map-title" data-directions-map-title></h3>
 
@@ -113,32 +117,32 @@
         </section>
     </div>
 
-    <!-- Kakao Map SDK - Local File -->
-    <script type="text/javascript" src="js/kakao-maps-sdk.js"></script>
+    <!-- Kakao Map SDK - Local -->
+    <script src="../js/kakao-maps-sdk.js"></script>
 
     <!-- Include ImageWithFallback script -->
-    <script src="js/image-with-fallback.js"></script>
+    <script src="../js/image-with-fallback.js"></script>
 
     <!-- Image Helpers -->
-    <script src="js/image-helpers.js"></script>
+    <script src="../js/image-helpers.js"></script>
 
     <!-- Base Data Mapper -->
-    <script src="js/data-mapper/core/base-mapper.js"></script>
+    <script src="../js/data-mapper/core/base-mapper.js"></script>
 
     <!-- Directions Page Mapper -->
-    <script src="js/data-mapper/pages/directions-mapper.js"></script>
+    <script src="../js/data-mapper/pages/directions-mapper.js"></script>
 
     <!-- Preview Handler for Admin Integration -->
-    <script src="js/preview-handler.js"></script>
+    <script src="../js/preview-handler.js"></script>
 
     <!-- Header Footer Mapper -->
-    <script src="js/data-mapper/pages/header-footer-mapper.js"></script>
+    <script src="../js/data-mapper/pages/header-footer-mapper.js"></script>
 
     <!-- Header and Footer Loader -->
-    <script src="js/header-footer-loader.js"></script>
+    <script src="../js/header-footer-loader.js"></script>
 
     <!-- Page-specific script -->
-    <script src="js/pages/directions.js"></script>
+    <script src="../js/pages/directions.js"></script>
 
 </body>
 </html>
