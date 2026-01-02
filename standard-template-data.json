@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.7.0",
-    "generatedAt": "2026-01-02T08:06:00.375Z",
+    "version": "1.8.0",
+    "generatedAt": "2026-01-02T08:06:33.570Z",
     "templateType": "full_banner_image",
     "propertyId": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "homepageId": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
@@ -1347,7 +1347,7 @@
           "sections": [
             {
               "hero": {
-                "title": "",
+                "title": " ",
                 "images": [
                   {
                     "id": "fc108b71-723e-478e-be4b-3a8cacac828f",
@@ -1370,7 +1370,8 @@
                     "description": "",
                     "isSelected": true
                   }
-                ]
+                ],
+                "description": "\n"
               },
               "closing": {
                 "title": "Welcome to GAEDACK Pension",
