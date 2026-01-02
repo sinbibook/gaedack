@@ -92,13 +92,20 @@ function initializeSlider() {
   startAutoSlide();
 }
 
-// 전역 스코프에 함수 노출 (HTML onclick에서 사용)
-window.nextSlide = nextSlide;
-window.prevSlide = prevSlide;
-window.goToSlide = goToSlide;
-
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  // Navigation 버튼에 이벤트 리스너 등록
+  const prevButton = document.querySelector('.nav-button.prev');
+  const nextButton = document.querySelector('.nav-button.next');
+
+  if (prevButton) {
+    prevButton.addEventListener('click', prevSlide);
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener('click', nextSlide);
+  }
+
   // Initialize touch swipe for hero section
   const heroSection = document.querySelector('.hero-section');
   if (heroSection) {

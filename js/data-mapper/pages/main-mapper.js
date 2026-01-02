@@ -37,14 +37,14 @@ class MainMapper extends BaseDataMapper {
 
         // 펜션 이름 매핑 - main 페이지의 hero.title 사용
         const propertyNameElement = this.safeSelect('[data-main-property-name]');
-        if (propertyNameElement && mainHeroData && mainHeroData.title) {
-            propertyNameElement.textContent = mainHeroData.title;
+        if (propertyNameElement && mainHeroData) {
+            propertyNameElement.textContent = this.sanitizeText(mainHeroData.title, '소개 페이지 히어로 타이틀');
         }
 
         // Hero 설명 매핑 - main 페이지의 hero.description 사용
         const heroDescriptionElement = this.safeSelect('[data-main-hero-description]');
-        if (heroDescriptionElement && mainHeroData && mainHeroData.description) {
-            heroDescriptionElement.innerHTML = mainHeroData.description.replace(/\n/g, '<br>');
+        if (heroDescriptionElement && mainHeroData) {
+            heroDescriptionElement.innerHTML = this._formatTextWithLineBreaks(mainHeroData.description, '소개 페이지 히어로 설명');
         }
     }
 
@@ -201,13 +201,8 @@ class MainMapper extends BaseDataMapper {
         section.className = 'content-section';
 
         // title과 description이 비어있으면 기본 placeholder 문구 사용
-        const title = aboutSection.title && aboutSection.title.trim()
-            ? aboutSection.title
-            : '블록 생성 후 제목을 입력해주세요.';
-
-        const description = aboutSection.description && aboutSection.description.trim()
-            ? aboutSection.description.replace(/\n/g, '<br>')
-            : '블록 생성 후 설명을 입력해주세요.';
+        const title = this.sanitizeText(aboutSection.title, '블록 생성 후 제목을 입력해주세요.');
+        const description = this._formatTextWithLineBreaks(aboutSection.description, '블록 생성 후 설명을 입력해주세요.');
 
         section.innerHTML = `
             <div class="section-container">
@@ -334,6 +329,15 @@ class MainMapper extends BaseDataMapper {
 
         // 메타 태그 업데이트
         this.updateMetaTags();
+
+        // Open Graph 메타 태그 매핑
+        const mainData = this.safeGet(this.data, 'homepage.customFields.pages.main.sections.0');
+        const ogTitle = this.data?.seo?.title || this.data?.property?.name || '';
+        const ogDescription = mainData?.hero?.description || this.data?.seo?.description || '';
+        // Hero 슬라이더 선택 로직과 동일: isSelected 및 sortOrder 고려
+        const selectedImages = mainData?.hero?.images?.filter(img => img.isSelected).sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)) ?? [];
+        const ogImage = selectedImages[0]?.url || '';
+        this.mapOpenGraphTags(ogTitle, ogDescription, ogImage);
 
         // E-commerce registration 매핑
         this.mapEcommerceRegistration();

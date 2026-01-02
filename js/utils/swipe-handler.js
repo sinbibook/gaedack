@@ -41,11 +41,13 @@ export function initSwipeHandler(element, onSwipeLeft, onSwipeRight, threshold =
 
   // 이벤트 핸들러 정의
   const handleTouchStart = (e) => {
+    if (!e.changedTouches.length) return;
     touchStartX = e.changedTouches[0].screenX;
     touchStartY = e.changedTouches[0].screenY;
   };
 
   const handleTouchEnd = (e) => {
+    if (!e.changedTouches.length) return;
     touchEndX = e.changedTouches[0].screenX;
     touchEndY = e.changedTouches[0].screenY;
     handleSwipe();
