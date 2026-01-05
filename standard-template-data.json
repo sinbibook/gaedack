@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.10.0",
-    "generatedAt": "2026-01-05T03:09:52.476Z",
+    "version": "1.11.0",
+    "generatedAt": "2026-01-05T07:25:21.697Z",
     "templateType": "full_banner_image",
     "propertyId": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "homepageId": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
@@ -1552,7 +1552,7 @@
           "sections": [
             {
               "hero": {
-                "title": "",
+                "title": "가평 개댁 펜션",
                 "images": [
                   {
                     "id": "f8ba909d-85a9-4d84-8a29-061917e88077",
@@ -1603,7 +1603,8 @@
                     "description": "",
                     "isSelected": true
                   }
-                ]
+                ],
+                "description": " "
               },
               "about": [
                 {
