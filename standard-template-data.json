@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.8.0",
-    "generatedAt": "2026-01-02T08:06:33.570Z",
+    "version": "1.9.0",
+    "generatedAt": "2026-01-05T02:32:17.340Z",
     "templateType": "full_banner_image",
     "propertyId": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "homepageId": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
@@ -1696,7 +1696,7 @@
           "sections": [
             {
               "hero": {
-                "title": "",
+                "title": "예약안내",
                 "images": [
                   {
                     "id": "2607e833-f7dd-4c96-9666-8245374f53f4",
@@ -1708,7 +1708,7 @@
                 ]
               },
               "about": {
-                "title": "",
+                "title": "가평 개댁 펜션",
                 "images": [
                   {
                     "id": "21cc4aeb-6447-49f0-a9ee-1aba302230d8",
@@ -1718,7 +1718,7 @@
                     "isSelected": true
                   }
                 ],
-                "description": ""
+                "description": " "
               }
             }
           ]
