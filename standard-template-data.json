@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.16.0",
-    "generatedAt": "2026-05-18T05:45:32.162285308Z",
+    "version": "1.17.0",
+    "generatedAt": "2026-05-27T03:32:31.428305064Z",
     "templateType": "full_banner_image",
     "propertyId": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "homepageId": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
@@ -11,7 +11,7 @@
     "name": "가평 개댁 펜션",
     "description": "가평 잣숲 안에 건강한 공기를 선물하는 피톤치드가 가득! \n환상적인 마운틴 뷰와 일출을 보며 천연 잔디마당에 강아지 친구들이 즐겁게 놀다가는 개댁 펜션",
     "subtitle": "반려견과 함께 힐링할 수 있는 개댁입니다.",
-    "address": "경기도 가평군 상면 축령로 276-16",
+    "address": "경기 가평군 상면 축령로 276-16",
     "latitude": 37.7742220991381,
     "longitude": 127.344367639037,
     "contactPhone": "010-4838-4203",
@@ -1891,7 +1891,83 @@
             }
           ]
         },
-        "room": [ ],
+        "room": [
+          {
+            "id": "226d9b38-245b-4977-b262-55f2921b8faf",
+            "sections": [
+              {
+                "hero": {
+                  "title": "",
+                  "images": [ ]
+                },
+                "gallery": {
+                  "title": " ",
+                  "images": [ ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "149cc945-d514-4df8-930f-6461d67b631d",
+            "sections": [
+              {
+                "hero": {
+                  "title": "",
+                  "images": [ ]
+                },
+                "gallery": {
+                  "title": " ",
+                  "images": [ ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "968dea29-991a-411e-a164-b55b03eae48a",
+            "sections": [
+              {
+                "hero": {
+                  "title": "",
+                  "images": [ ]
+                },
+                "gallery": {
+                  "title": " ",
+                  "images": [ ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "5fd79e00-9dea-4496-80be-f5be0cdc95b2",
+            "sections": [
+              {
+                "hero": {
+                  "title": "",
+                  "images": [ ]
+                },
+                "gallery": {
+                  "title": " ",
+                  "images": [ ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "f8c238e7-1b48-450e-9ec4-2aaa05b90561",
+            "sections": [
+              {
+                "hero": {
+                  "title": "",
+                  "images": [ ]
+                },
+                "gallery": {
+                  "title": " ",
+                  "images": [ ]
+                }
+              }
+            ]
+          }
+        ],
         "facility": [
           {
             "id": "a228a2eb-7539-42ba-94fd-22275143026d",
