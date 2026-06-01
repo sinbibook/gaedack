@@ -1,14 +1,15 @@
 {
   "metadata": {
-    "version": "1.18.0",
-    "generatedAt": "2026-05-27T03:41:55.172713628Z",
-    "templateType": "full_banner_image",
+    "version": "1.19.0",
+    "generatedAt": "2026-06-01T07:10:32.786303237Z",
+    "templateType": "fullpage_mood",
     "propertyId": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "homepageId": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
   },
   "property": {
     "id": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "name": "가평 개댁 펜션",
+    "nameEn": "Gapyeong Gaedaek Pension",
     "description": "가평 잣숲 안에 건강한 공기를 선물하는 피톤치드가 가득! \n환상적인 마운틴 뷰와 일출을 보며 천연 잔디마당에 강아지 친구들이 즐겁게 놀다가는 개댁 펜션",
     "subtitle": "반려견과 함께 힐링할 수 있는 개댁입니다.",
     "address": "경기 가평군 상면 축령로 276-16",
@@ -23,6 +24,9 @@
     "reservationGuide": "미성년자는 보호자 없이 예약 및 입실 불가하며, 위반 시 환불 없이 퇴실됩니다.\n객실 요금은 기준 인원 기준이며, 초과 시 추가 요금이 발생합니다.\n최대 인원 초과 시 입실 불가하며, 이로 인한 환불은 불가입니다. (유아, 어린이 포함)\n현장 추가 요금은 숙소 측에 사전 확인 바랍니다.\n수영장 등 부대시설은 날씨나 상황에 따라 이용이 제한될 수 있으니 사전 확인 바랍니다.\n당일 예약 후 취소 시 환불 불가하며, 늦은 시간 당일 예약 후 즉시 방문 시 입실 불가할 수 있으니 숙소 확인 후 예약해 주세요.\n취소 수수료는 구매처마다 다를 수 있습니다.\n시스템 오류로 인해 정상가와 다른 금액으로 예약이 진행된 경우, 부득이하게 예약이 취소될 수 있습니다.\n전 객실 금연이며, 흡연은 지정된 장소에서만 가능합니다.",
     "province": "경기도",
     "city": "가평군",
+    "domain": "gaedack.kr",
+    "realtimeBookingId": "https://map.naver.com/p/entry/place/1709982842",
+    "ybsId": "78757",
     "amenities": [ ],
     "nearbyAttractions": [
       "산"
@@ -545,11 +549,7 @@
         "surrounding": [ ],
         "commonArea": [ ]
       }
-    ],
-    "nameEn": "Gapyeong Gaedaek Pension",
-    "domain": "gaedack.kr",
-    "realtimeBookingId": "https://map.naver.com/p/entry/place/1709982842",
-    "ybsId": "78757"
+    ]
   },
   "rooms": [
     {
@@ -1549,28 +1549,12 @@
     }
   ],
   "homepage": {
+    "id": "d14d73f3-1874-4ddc-a428-bd152cf0c84b",
     "domain": "gaedack.kr",
-    "templateType": "full_banner_image",
+    "templateType": "fullpage_mood",
     "images": [
       {
-        "logo": [
-          {
-            "id": "597812b1-f02d-401f-925d-03b7ac7ad8d1",
-            "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/logo/1763528186251-tz8x012yyvm.png",
-            "sortOrder": 0,
-            "description": "",
-            "isSelected": true,
-            "blockId": null
-          },
-          {
-            "id": "893ae04d-7c50-408d-82ae-22c116ecc5c3",
-            "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/logo/1763528466941-hh9xilkszvc.jpg",
-            "sortOrder": 1,
-            "description": "",
-            "isSelected": false,
-            "blockId": null
-          }
-        ]
+        "logo": [ ]
       }
     ],
     "seo": {
@@ -1599,6 +1583,54 @@
                     "description": "",
                     "isSelected": true,
                     "blockId": null
+                  },
+                  {
+                    "id": "1be9b7b1-6611-4865-9125-9bd7f9c0dc22",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_hero/1780297268890-zkn14s9ica.jpg",
+                    "sortOrder": 1,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "420cf3bf-93ad-4668-a946-a62015784495",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_hero/1780297268886-tek4zmbifc.jpg",
+                    "sortOrder": 2,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "cb1ac59a-ac3f-4e1b-a11b-7a58510183ea",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_hero/1780297268882-faa06rpsu0.jpg",
+                    "sortOrder": 3,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "b16d6343-25a1-402a-8b6e-162889bb0998",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_hero/1780297268888-m7idhc9c4g.jpg",
+                    "sortOrder": 4,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "8b03b108-0da8-444e-a4c0-3c496399b352",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_hero/1780297268887-7goy3xp44c.jpg",
+                    "sortOrder": 5,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "b705aa18-e08d-4dce-a782-1bd55e2311ec",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_hero/1780297268884-4koyp2a93v.jpg",
+                    "sortOrder": 6,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
                   }
                 ],
                 "videos": [ ],
@@ -1606,7 +1638,7 @@
                 "description": "\n"
               },
               "closing": {
-                "title": "Welcome to GAEDACK Pension",
+                "title": "Welcome Gaedaek!",
                 "images": [
                   {
                     "id": "5e59501f-f10d-446e-af52-996cbb76945d",
@@ -1622,12 +1654,28 @@
                 "description": "즐거운 휴식이 있는곳"
               },
               "essence": {
-                "title": "Relaxation",
+                "title": "가평 잣숲의 피톤치드 가득한 자연 속에서 맑은 공기와 여유로운 휴식을 즐겨보세요. 환상적인 마운틴뷰와 아름다운 일출이 하루를 더욱 특별하게 만들어줍니다. 넓은 천연 잔디마당이 마련되어 있어 반려견과 함께 자유롭고 즐거운 시간을 보낼 수 있습니다. 🐾🌲✨",
                 "images": [
+                  {
+                    "id": "ccd95796-0727-45e3-95b4-b02cff06c640",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_essence/1780297718501-hw7bm4x82s.jpg",
+                    "sortOrder": 0,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
                   {
                     "id": "a879e425-7dbb-403d-8d1e-c4d1ad4ea793",
                     "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_essence/1763372193831-q1dwr1c2a08.jpg",
-                    "sortOrder": 0,
+                    "sortOrder": 1,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "b02f01c8-d262-4ad9-bee7-2cf0f1c158e8",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_essence/1780297718488-9e6nui4l9d.jpg",
+                    "sortOrder": 2,
                     "description": "",
                     "isSelected": true,
                     "blockId": null
@@ -1638,19 +1686,19 @@
                 "description": "Feel the tranquility of our serene natural surroundings"
               },
               "gallery": {
-                "title": "healing",
+                "title": "",
                 "images": [
                   {
-                    "id": "21eaf035-7250-4a86-bbeb-8a43c0f441bf",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1763350242027-z329saaohgr.jpg",
+                    "id": "f74f05c8-6613-49af-bc29-29f17e545f12",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1780297718503-u7qhc3md6r.jpg",
                     "sortOrder": 0,
                     "description": "",
                     "isSelected": true,
                     "blockId": null
                   },
                   {
-                    "id": "e4bb5ee5-3cf1-4f48-8cb0-b5ddcb5f4688",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1763350284547-p7mojsxeb3f.jpg",
+                    "id": "21eaf035-7250-4a86-bbeb-8a43c0f441bf",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1763350242027-z329saaohgr.jpg",
                     "sortOrder": 1,
                     "description": "",
                     "isSelected": true,
@@ -1665,9 +1713,33 @@
                     "blockId": null
                   },
                   {
-                    "id": "a9f46d61-f2d2-40d8-80f9-2d17a27a4020",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1777277929220-ir400x35pf9.jpg",
+                    "id": "f576a60f-6c8c-4965-948d-743cce19b550",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1780297718544-m5zeo78259.jpg",
                     "sortOrder": 3,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "5e858e29-f988-4623-8524-a7f358379ef1",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1780297718506-4klsjqh7sm.jpg",
+                    "sortOrder": 4,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "c3c0bd18-eb73-4cf9-a39f-792631962e04",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1780297718512-h0qr36fy5u.jpg",
+                    "sortOrder": 5,
+                    "description": "",
+                    "isSelected": true,
+                    "blockId": null
+                  },
+                  {
+                    "id": "d479541d-a6fd-458f-a06d-ba9b3eff34d9",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_gallery/1780297718546-hyca26wcd2.jpg",
+                    "sortOrder": 6,
                     "description": "",
                     "isSelected": true,
                     "blockId": null
@@ -1675,7 +1747,7 @@
                 ],
                 "videos": [ ],
                 "mediaType": "image",
-                "description": "Enjoy a peaceful retreat for healing at GAEDACK Pension"
+                "description": " "
               },
               "signature": {
                 "title": "GAEDACK Pension",
@@ -1771,44 +1843,20 @@
           "sections": [
             {
               "hero": {
-                "title": "가평 개댁 펜션",
+                "title": "",
                 "images": [
-                  {
-                    "id": "f8ba909d-85a9-4d84-8a29-061917e88077",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_hero/1763372422122-hbukk0mf99u.jpg",
-                    "sortOrder": 0,
-                    "description": "",
-                    "isSelected": false,
-                    "blockId": null
-                  },
                   {
                     "id": "9d05238e-6da1-4f21-a7b0-9cb35336378f",
                     "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_hero/1763372514823-64pnooyw4ta.jpg",
-                    "sortOrder": 1,
-                    "description": "",
-                    "isSelected": false,
-                    "blockId": null
-                  },
-                  {
-                    "id": "7c96c64a-0d6b-4d35-acdb-89ae33b80ad7",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_hero/1763372514823-ee49tcpsebl.jpg",
-                    "sortOrder": 2,
-                    "description": "",
-                    "isSelected": false,
-                    "blockId": null
-                  },
-                  {
-                    "id": "6309cf93-4c49-4a15-a263-77a07e754597",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_hero/1763430590674-2hhkyapnfuu.jpg",
-                    "sortOrder": 3,
+                    "sortOrder": 0,
                     "description": "",
                     "isSelected": true,
                     "blockId": null
                   },
                   {
-                    "id": "99dfcac6-1dbc-4a9b-af4b-b345c77e9d4d",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_hero/1763430590676-a8hffoh0ost.jpg",
-                    "sortOrder": 4,
+                    "id": "7c96c64a-0d6b-4d35-acdb-89ae33b80ad7",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_hero/1763372514823-ee49tcpsebl.jpg",
+                    "sortOrder": 1,
                     "description": "",
                     "isSelected": true,
                     "blockId": null
@@ -1816,15 +1864,7 @@
                   {
                     "id": "a144cb1d-f3cc-43da-8138-8a584fc3b050",
                     "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_hero/1763430590676-741yke1bniw.jpg",
-                    "sortOrder": 5,
-                    "description": "",
-                    "isSelected": true,
-                    "blockId": null
-                  },
-                  {
-                    "id": "c067284d-4cf3-4d5e-9147-d94a24d4b9d0",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_hero/1763430590676-2o3ok24eqho.jpg",
-                    "sortOrder": 6,
+                    "sortOrder": 2,
                     "description": "",
                     "isSelected": true,
                     "blockId": null
@@ -1834,7 +1874,7 @@
               },
               "about": [
                 {
-                  "title": "천연 잔디마당",
+                  "title": " ",
                   "images": [
                     {
                       "id": "2ee1431a-2ccc-4a52-a001-02198073eedd",
@@ -1851,41 +1891,26 @@
                       "description": "",
                       "isSelected": true,
                       "blockId": "b9840392-2203-4d3f-8b2e-2e9f7d191555"
-                    }
-                  ],
-                  "blockId": "b9840392-2203-4d3f-8b2e-2e9f7d191555",
-                  "description": "천연 잔디마당에서 댕댕이 친구들이 즐겁게 놀다가는 곳, 개댁 "
-                },
-                {
-                  "title": "피톤치드",
-                  "images": [
+                    },
                     {
-                      "id": "e06abfda-e62c-48f2-a7b7-404cf7c8a610",
-                      "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_about/1763430864411-wworn7x4tyc.jpg",
+                      "id": "d92840cd-04aa-4ea7-963e-4aff9a1cd2fc",
+                      "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_about/1780297718548-rfkszd4eu0.jpg",
                       "sortOrder": 2,
                       "description": "",
                       "isSelected": true,
-                      "blockId": "b2c748f5-e420-4a4b-af1a-6879cb4436b1"
+                      "blockId": "b9840392-2203-4d3f-8b2e-2e9f7d191555"
                     },
                     {
-                      "id": "164d3b78-3e05-4156-a1b1-83b2a547fb45",
-                      "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_about/1763430864411-5mz09tuygsv.jpg",
+                      "id": "05310ab9-ff8f-4b87-9edc-b5ec84a9911c",
+                      "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_about/1780297718578-xg2g6zcvl7.jpg",
                       "sortOrder": 3,
                       "description": "",
-                      "isSelected": false,
-                      "blockId": "b2c748f5-e420-4a4b-af1a-6879cb4436b1"
-                    },
-                    {
-                      "id": "35a8526c-aa09-4165-a752-b4463f52fa17",
-                      "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/main_about/1763430864411-zzvza9knp9.jpg",
-                      "sortOrder": 4,
-                      "description": "",
                       "isSelected": true,
-                      "blockId": "b2c748f5-e420-4a4b-af1a-6879cb4436b1"
+                      "blockId": "b9840392-2203-4d3f-8b2e-2e9f7d191555"
                     }
                   ],
-                  "blockId": "b2c748f5-e420-4a4b-af1a-6879cb4436b1",
-                  "description": "가평 잣숲 안에 건강한 공기를 선물하는 피톤치드가 가득\n환상적인 마운틴 뷰와 일출을 볼수 있습니다."
+                  "blockId": "b9840392-2203-4d3f-8b2e-2e9f7d191555",
+                  "description": "가평 잣숲의 피톤치드 가득한 자연 속에서 \n맑은 공기와 여유로운 휴식을 즐겨보세요.\n환상적인 마운틴뷰와 아름다운 일출이 \n하루를 더욱 특별하게 만들어줍니다.\n넓은 천연 잔디마당이 마련되어 있어 \n반려견과 함께 자유롭고 \n즐거운 시간을 보낼 수 있습니다. 🐾🌲✨"
                 }
               ]
             }
@@ -2028,17 +2053,44 @@
             }
           ]
         },
-        "layoutMap": {
+        "nearbyAttractions": {
           "sections": [ ]
         },
-        "nearbyAttractions": {
+        "layoutMap": {
           "sections": [ ]
         }
       },
       "popup": {
         "popups": [ ]
       },
+      "theme": {
+        "font": {
+          "koMain": {
+            "cdn": null,
+            "key": "imhyemin",
+            "woff2": "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Regular.woff2",
+            "family": "ImHyeMin"
+          },
+          "koSub": {
+            "cdn": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css",
+            "key": "pretendard",
+            "woff2": null,
+            "family": "Pretendard"
+          },
+          "enMain": {
+            "cdn": "https://use.typekit.net/vll4umt.css",
+            "key": "amandine",
+            "woff2": null,
+            "family": "amandine"
+          }
+        },
+        "color": {
+          "primary": "#F5F5F5",
+          "secondary": "#5C82B4"
+        }
+      },
       "property": {
+        "name": "가평 개댁 펜션",
         "images": [
           {
             "id": "7c8ba578-e3e4-4518-9adf-d70a813cae17",
@@ -2185,8 +2237,7 @@
             "category": "property_exterior"
           }
         ],
-        "name": "가평 개댁 펜션",
-        "nameEn": "Gapyeong Gaedaek Pension"
+        "nameEn": "Gaedaek Pension"
       },
       "roomtypes": [
         {
@@ -2899,7 +2950,6 @@
           ]
         }
       ]
-    },
-    "id": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
+    }
   }
 }

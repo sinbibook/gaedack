@@ -1,317 +1,440 @@
-/* Directions Page Specific Styles */
+/* ===========================
+   Directions Page Styles (Figma export 기반)
+   - 헤더/푸터는 동적 로드 (header.css / footer.css 사용)
+   - 본 파일은 Direction 콘텐츠 영역(.direction, .content, .con-2, .location-info-wrapper, .con-5)만 담당
+   =========================== */
 
-/* Hero Title Background */
-.hero-title {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+body {
+  margin: 0;
+  padding: 0;
 }
 
-/* Mobile hero height */
-@media (max-width: 767px) {
-    .hero-section {
-        height: 60vh;
-        min-height: 60vh;
-    }
+.direction {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-whitesmoke);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;             /* footer-container 등 자식이 풀 width로 늘어나도록 */
+  isolation: isolate;
+  line-height: normal;
+  letter-spacing: normal;
+}
+/* footer-container 명시적 풀 width 보장 */
+.direction #footer-container {
+  width: 100%;
+  align-self: stretch;
 }
 
-.hero-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* ===========================
+   1. HERO (Direction 타이틀 + 화살표) — main.html con-1과 동일 사이즈/반응형 + 슬라이더
+   =========================== */
+.direction .content {
+  align-self: stretch;
+  height: auto;
+  min-height: clamp(600px, 60vw, 1082px);  /* main.html con-1-wrapper와 동일 반응형 */
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: left;
+  font-size: 66px;
+  color: var(--color-white);
+  font-family: var(--font-italiana);
+  display: flex;
+  align-items: flex-start;
+}
+/* 모바일(≤768px)에서만 hero 세로 viewport 60vh로 단축 — direction/room/facility/reservation 공통
+   부모/자식 모든 hero 컨테이너에 강제 적용해서 .bg2 padding이 부풀리는 것 방지 */
+@media screen and (max-width: 768px) {
+  .direction .content,
+  .direction .con-2,
+  .direction .bg2 {
+    height: 60vh !important;
+    min-height: 60vh !important;
+    max-height: 60vh !important;
+    box-sizing: border-box !important;
+  }
+  /* bg2 padding 축소 — content가 60vh 안에 자연스럽게 정렬되도록 */
+  .direction .bg2 {
+    padding-top: 0 !important;
+    padding-bottom: 20px !important;
+    overflow: hidden !important;
+  }
 }
 
-/* Back Button Position */
-.back-button {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
+.direction .con-2 {
+  align-self: stretch;
+  flex: 1;
+  background-color: var(--color-white);
+  max-width: 100%;
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
-/* Content Section */
-.content-section {
-    padding: 4rem 2rem 3.5rem;
-    background: white;
+/* bg2: 슬라이더 컨테이너 (background-image 제거하고 .bg-slides로 크로스페이드) */
+.direction .bg2 {
+  position: relative;
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 0 53px;
+  background-image: none;          /* 단일 bg 제거 → bg-slides 사용 */
+  max-width: 100%;
+  box-sizing: border-box;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
-@media (min-width: 768px) {
-    .content-section {
-        padding: 4rem 8.75rem 3.5rem;
-    }
+/* 슬라이더 layer (absolute, behind bg-child) */
+.direction .bg-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.direction .bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-elegant) !important;
+}
+.direction .bg-slide.is-active {
+  opacity: 1;
+}
+/* bg-child(텍스트/화살표)는 슬라이드 위로 */
+.direction .bg-child {
+  position: relative;
+  z-index: 1;
+}
+/* 화살표 클릭 활성화 */
+.direction .arrow-child2[role="button"],
+.direction .arrow-child4[role="button"] {
+  cursor: pointer;
+  pointer-events: auto;
 }
 
-.content-container {
-    width: 100%;
-    max-width: none;
+.direction .bg-child {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 20px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.resort-info {
-    margin-bottom: 2rem;
+.direction .address-container-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 40px;
+  max-width: 100%;
 }
 
-.section-title {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #111827;
-    margin-bottom: 3rem;
+.direction .address-container {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0 1px;
+  gap: 25px;
 }
 
-/* Notice item - reduce margin */
-.notice-item {
-    margin-bottom: 4rem;
+.direction .direction-info {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 54px 0 57px;
 }
 
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    align-items: center;
+.direction .direction2 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  line-height: 100%;
+  font-weight: 400;
+  font-family: inherit;
+  text-shadow: var(--text-shadow-1, 0px 0px 4px rgba(0, 0, 0, 0.15));
+  z-index: 1;
 }
 
-@media (min-width: 1024px) {
-    .info-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+.direction .direction-divider {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  border-top: 1px solid var(--color-white);
+  box-sizing: border-box;
+  z-index: 1;
 }
 
-.info-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.direction .arrow-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 18px 0 19px;
+  box-sizing: border-box;
+  max-width: 100%;
+  font-size: 20px;
 }
 
-.address-section h3 {
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: #111827;
-    margin-bottom: 1rem;
+.direction .arrow2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  color: var(--color-white);
+  font-family: var(--font-italiana);
 }
 
-.address-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1rem;
+.direction .arrow-child2 {
+  height: 10px;
+  width: 100px;
+  position: relative;
+  cursor: pointer;
 }
 
-.address-item:last-child {
-    margin-bottom: 0;
+.direction .h36 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: -0.01em;
+  line-height: 36px;
+  font-weight: 400;
+  font-family: inherit;
 }
 
-.address-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: #6b7280;
-    margin-top: 0.25rem;
-    margin-right: 0.75rem;
-    flex-shrink: 0;
+.direction .arrow-child3 {
+  height: 11px;
+  width: 1px;
+  position: relative;
+  border-right: 1px solid var(--color-white);
+  box-sizing: border-box;
 }
 
-.address-details p:first-child {
-    font-weight: 500;
-    color: #111827;
-    margin-bottom: 0.25rem;
+.direction .arrow-child4 {
+  height: 10px;
+  width: 100px;
+  position: relative;
+  object-fit: contain;
+  transform: scaleX(-1);
+  cursor: pointer;
 }
 
-.address-details p:last-child {
-    color: #4b5563;
+/* ===========================
+   2. LOCATION INFO (주소 + 카카오맵)
+   =========================== */
+.direction .location-info-wrapper {
+  align-self: stretch;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 112px 20px 144px;     /* 상단 여백 112px 복원 */
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 56px;
+  color: var(--Black);
+  font-family: var(--font-italiana);
 }
 
-.info-notice {
-    background: #f9fafb;
-    padding: 1rem;
-    border-radius: 0.5rem;
+.direction .location-info {
+  width: 1500px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
 }
 
-.info-notice p {
-    font-size: 0.875rem;
-    color: #374151;
-    line-height: 1.6;
-    margin-bottom: 0;
+.direction .details-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  max-width: 100%;
 }
 
-/* Map Section */
-.map-section {
-    padding: 0 2rem 10rem 2rem;
-    background: rgba(255, 255, 255, 1);
+.direction .direction3 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  line-height: 120%;
+  font-weight: 400;
+  font-family: inherit;
+  z-index: 1;
 }
 
-@media (min-width: 768px) {
-    .map-section {
-        padding: 0 8.75rem 10rem 8.75rem;
-    }
+.direction .address-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px 0 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: left;
+  font-size: 20px;
+  font-family: var(--font-ko-sub);
 }
 
-.map-container {
-    width: 100%;
-    max-width: none;
+.direction .h38 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: -0.01em;
+  line-height: 180%;
+  font-weight: 400;
+  font-family: inherit;
+  color: var(--Black);
+  z-index: 1;
 }
 
-.map-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #111827;
-    margin-bottom: 2rem;
+.direction .map-container {
+  align-self: stretch;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;        /* 어떤 화면에서도 가로 가운데 정렬 */
+  max-width: 100%;
+  text-align: center;
+  font-size: var(--fs-64, 64px);
+  color: var(--color-white);
+  font-family: var(--font-abhaya-libre-extrabold, "Abhaya Libre ExtraBold");
 }
 
-/* Notice section title - reduce margin */
-.notice-title {
-    margin-bottom: 1rem;
-}
-
-.map-wrapper {
-    width: 100%;
-    height: 300px; /* 모바일 기본값 */
-    min-height: 450px;
-    background: white;
-    border-radius: 0.5rem;
-    border: 1px solid #e5e7eb;
-    overflow: hidden;
-    position: relative;
-}
-
-@media (min-width: 768px) {
-    .map-wrapper {
-        height: 700px; /* 태블릿 이상 */
-    }
+.direction .img1 {
+  background-color: var(--color-black);
+  overflow: hidden;
+  padding: 343px 554px 342px 555px;
+  box-sizing: border-box;
+  z-index: 1;
+  max-width: 100%;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
 }
 
 #kakao-map {
+  position: absolute;
+  inset: 0;
+}
+
+/* ===========================
+   3. QUOTE 섹션은 quote-section.css 사용 (main.html과 동일)
+   .direction .quote-section은 별도 스타일 불필요
+   =========================== */
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media screen and (max-width: 1200px) {
+  .direction .location-info-wrapper {
+    padding-bottom: 94px;
+  }
+  .direction .img1 {
+    padding-left: 277px;
+    padding-right: 277px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  /* .content padding-bottom 제거 — 모든 페이지(direction/room/facility/reservation)에서
+     hero 높이를 min-height clamp(600, 60vw, 1082px) 단일 값으로 통일 */
+  .direction .content {
+    padding-bottom: 0;
+  }
+  .direction .bg2 {
+    padding-bottom: 34px;
+  }
+  .direction .direction2 {
+    font-size: 53px;
+    line-height: 53px;
+  }
+  .direction .direction3 {
+    font-size: 45px;
+    line-height: 54px;
+  }
+  .direction .img1 {
+    padding-top: 223px;
+    padding-bottom: 222px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  /* .content padding-bottom 제거 — 모든 페이지에서 hero 높이 통일 */
+  .direction .content {
+    padding-bottom: 0;
+  }
+  .direction .location-info-wrapper {
+    padding-bottom: 61px;
+  }
+  .direction .details-container {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .direction .img1 {
+    padding-left: 138px;
+    padding-right: 138px;
+  }
+  /* 모바일에서 Direction 타이틀 가운데 정렬 */
+  .direction .address-container-parent {
+    align-items: center !important;
+  }
+  .direction .address-container {
+    align-items: center !important;
+  }
+  .direction .direction-info {
+    justify-content: center !important;
     width: 100%;
-    height: 100%;
-}
-
-.map-wrapper iframe {
-    border-radius: 8px;
-}
-
-.map-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.map-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(229, 231, 235, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.map-content {
+    box-sizing: border-box;
+  }
+  .direction .direction2 {
     text-align: center;
-    background: white;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
 }
 
-.map-pin-icon {
-    width: 3rem;
-    height: 3rem;
-    color: #3b82f6;
-    margin: 0 auto 1rem;
-}
-
-.map-content h4 {
-    font-weight: 500;
-    color: #111827;
-    margin-bottom: 0.5rem;
-}
-
-.map-content .address {
-    font-size: 0.875rem;
-    color: #4b5563;
-    margin-bottom: 1rem;
-}
-
-.map-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.map-button {
+@media screen and (max-width: 450px) {
+  .direction .bg2 {
+    padding-bottom: 22px;
+  }
+  .direction .address-container-parent {
+    gap: 20px;
+    align-items: center !important;        /* 모바일에서 가운데 정렬 */
+  }
+  .direction .address-container {
+    align-items: center !important;
+  }
+  .direction .direction-info {
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center !important;
     width: 100%;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    border: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.kakao-button {
-    background: #fde047;
-    color: #111827;
-}
-
-.kakao-button:hover {
-    background: #eab308;
-}
-
-.google-button {
-    background: #3b82f6;
-    color: white;
-}
-
-.google-button:hover {
-    background: #2563eb;
-}
-
-.map-copyright {
-    position: absolute;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    font-size: 0.75rem;
-    color: #6b7280;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-}
-
-.map-copyright-center {
+    box-sizing: border-box;
+  }
+  .direction .direction2 {
+    font-size: 40px;
+    line-height: 40px;
     text-align: center;
-    margin-top: 0.5rem;
-    font-size: 0.75rem;
-    color: #6b7280;
-}
-
-/* Transportation Info Cards */
-.transport-grid {
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .transport-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.transport-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    border: 1px solid #e5e7eb;
-}
-
-.transport-card h4 {
-    font-weight: 500;
-    color: #111827;
-    margin-bottom: 0.5rem;
-}
-
-.transport-card p {
-    font-size: 0.875rem;
-    color: #4b5563;
-    line-height: 1.6;
-}
-
-.transport-card br {
-    margin: 0.25rem 0;
+  }
+  .direction .direction3 {
+    font-size: 34px;
+    line-height: 40px;
+  }
+  .direction .h38 {
+    font-size: 16px;
+    line-height: 29px;
+  }
+  .direction .img1 {
+    padding: 145px 20px 144px;
+  }
 }
