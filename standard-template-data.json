@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.29.0",
-    "generatedAt": "2026-08-20T02:59:47.020687554Z",
+    "version": "1.30.0",
+    "generatedAt": "2026-08-20T03:23:50.787617770Z",
     "templateType": "fullpage_mood",
     "propertyId": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "homepageId": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
@@ -1527,8 +1527,8 @@
                 "title": "Welcome Gaedaek!",
                 "images": [
                   {
-                    "id": "5e59501f-f10d-446e-af52-996cbb76945d",
-                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_closing/1763355103200-ojguhz73j2.jpg",
+                    "id": "fb10da9f-2f9b-410c-86f2-1d788092b784",
+                    "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/homepage/d14d73f3-1874-4ddc-a428-bd152cf0c84b/index_closing/1787196229071-bxd4i3m5za.jpg",
                     "sortOrder": 0,
                     "description": "",
                     "isSelected": true,
