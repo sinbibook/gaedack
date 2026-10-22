@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.41.0",
-    "generatedAt": "2026-08-21T01:04:40.018384936Z",
+    "version": "1.42.0",
+    "generatedAt": "2026-10-22T06:37:39.543055254Z",
     "templateType": "fullpage_mood",
     "propertyId": "e18e02b5-4e28-4337-b6d6-25d3e1b5927b",
     "homepageId": "d14d73f3-1874-4ddc-a428-bd152cf0c84b"
@@ -15,7 +15,9 @@
     "address": "경기 가평군 상면 축령로 276-16 개댁 펜션",
     "latitude": 37.7742220991381,
     "longitude": 127.344367639037,
-    "contactPhone": "010-4838-4203",
+    "contactPhone": [
+      "010-4838-4203"
+    ],
     "contactEmail": "pks7705@naver.com",
     "checkin": "15:00",
     "checkout": "11:00",
@@ -27,6 +29,9 @@
     "domain": "gaedack.kr",
     "realtimeBookingId": "https://map.naver.com/p/entry/place/1709982842",
     "ybsId": "78757",
+    "tripPropertyId": "9767",
+    "partnerType": "distributor_b",
+    "tripProviderName": "(주)신비서",
     "amenities": [
       "흡연구역(지정장소)",
       "주차장"
@@ -333,8 +338,8 @@
       {
         "thumbnail": [
           {
-            "id": "4beea1e0-2174-45c0-80a0-b223dcde02c2",
-            "url": "https://bookingplay-media.s3.amazonaws.com/item_images/2026/08/18/ePdA50Ybxzvs.jpg",
+            "id": "f77aeb74-ea9f-45f8-ba33-5a749881c72e",
+            "url": "https://bookingplay-media.s3.amazonaws.com/item_images/2026/08/18/ULzleduRAVPb.jpg",
             "sortOrder": 1,
             "description": "",
             "isSelected": true,
@@ -343,16 +348,16 @@
         ],
         "exterior": [
           {
-            "id": "f77aeb74-ea9f-45f8-ba33-5a749881c72e",
-            "url": "https://bookingplay-media.s3.amazonaws.com/item_images/2026/08/18/ULzleduRAVPb.jpg",
+            "id": "1bcc690b-f287-437a-b247-7993bc8af93d",
+            "url": "https://bookingplay-media.s3.amazonaws.com/item_images/2026/08/18/LzXwl3oB8bMJ.jpg",
             "sortOrder": 2,
             "description": "",
             "isSelected": true,
             "blockId": null
           },
           {
-            "id": "1bcc690b-f287-437a-b247-7993bc8af93d",
-            "url": "https://bookingplay-media.s3.amazonaws.com/item_images/2026/08/18/LzXwl3oB8bMJ.jpg",
+            "id": "4beea1e0-2174-45c0-80a0-b223dcde02c2",
+            "url": "https://bookingplay-media.s3.amazonaws.com/item_images/2026/08/18/ePdA50Ybxzvs.jpg",
             "sortOrder": 3,
             "description": "",
             "isSelected": true,
@@ -2764,7 +2769,10 @@
             }
           ]
         }
-      ]
+      ],
+      "footer": {
+        "ruralStayMark": null
+      }
     }
   }
 }
