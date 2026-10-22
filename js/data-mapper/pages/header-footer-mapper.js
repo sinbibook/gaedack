@@ -161,6 +161,8 @@ class HeaderFooterMapper extends BaseDataMapper {
     /**
      * 객실 메뉴 아이템 동적 생성
      * rooms[]를 source of truth로 사용하고 getRoomName으로 customFields.roomtypes override 적용
+     * customFields.roomtypes[].groupName이 하나라도 지정되어 있으면 같은 그룹끼리
+     * 하나의 메뉴 항목으로 묶어 표시한다 (getRoomMenuItems 참고).
      */
     mapRoomMenuItems() {
         const containers = [
@@ -174,16 +176,18 @@ class HeaderFooterMapper extends BaseDataMapper {
         if (!rooms || !Array.isArray(rooms) || rooms.length === 0) return;
 
         const sortedRooms = [...rooms].sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+        const menuItems = this.getRoomMenuItems(sortedRooms);
 
         containers.forEach(container => {
             const isFooter = container.closest('.footer') !== null;
-            sortedRooms.forEach(room => {
+            menuItems.forEach(item => {
+                const label = item.label;
+                if (!String(label || '').trim()) return;
                 const a = document.createElement('a');
                 a.className = isFooter ? 'footer-col-item' : 'reservation';
-                const roomName = this.getRoomName(room);
-                a.textContent = roomName;
-                a.title = roomName; // 말줄임(...)으로 잘릴 때 전체 객실명을 hover로 확인
-                a.href = `./room.html?id=${room.id}`;
+                a.textContent = label;
+                a.title = label; // 말줄임(...)으로 잘릴 때 전체 라벨을 hover로 확인
+                a.href = `./room.html?id=${item.room.id}`;
                 container.appendChild(a);
             });
         });
@@ -384,7 +388,7 @@ class HeaderFooterMapper extends BaseDataMapper {
             }
         }
 
-        // 저작권 정보 매핑 - 자동 생성 (현재년도 + 신비서 하드코딩)
+        // 저작권 정보 매핑 - 현재년도 + property.tripProviderName (없으면 신비서)
         const copyrightElement = this.safeSelect('[data-footer-copyright]');
         if (copyrightElement) {
             const currentYear = new Date().getFullYear();
@@ -393,7 +397,9 @@ class HeaderFooterMapper extends BaseDataMapper {
             const copyrightLink = document.createElement('a');
             copyrightLink.href = 'https://www.sinbibook.com/';
             copyrightLink.target = '_blank';
-            copyrightLink.textContent = `© ${currentYear} 신비서. All rights reserved.`;
+            // property.tripProviderName(Trip11 공급자명) 이 있으면 그 이름으로, 없으면 기존 '신비서'
+            const provider = String(this.safeGet(this.data, 'property.tripProviderName') || '').trim() || '신비서';
+            copyrightLink.textContent = `© ${currentYear} ${provider}. All rights reserved.`;
             copyrightLink.style.color = 'inherit';
             copyrightLink.style.textDecoration = 'none';
 
@@ -401,6 +407,30 @@ class HeaderFooterMapper extends BaseDataMapper {
             copyrightElement.innerHTML = '';
             copyrightElement.appendChild(copyrightLink);
         }
+    }
+
+    /**
+     * Footer 농어촌민박사업자 이미지 매핑
+     * homepage.customFields.footer.ruralStayMark → [data-footer-rural-stay-mark]
+     * url 이 있을 때만 노출하고, 없으면 숨겨 기존 푸터와 같다.
+     * 프리뷰는 같은 페이지에서 다시 매핑하므로 매번 표시 상태를 되돌린다.
+     */
+    mapFooterRuralStayMark() {
+        const mark = this.safeGet(this.data, 'homepage.customFields.footer.ruralStayMark');
+        const markUrl = mark && mark.url ? String(mark.url) : '';
+        const alt = (mark && mark.description && String(mark.description).trim()) || '농어촌민박사업자';
+
+        document.querySelectorAll('[data-footer-rural-stay-mark-wrap]').forEach(wrap => {
+            wrap.style.display = markUrl ? '' : 'none';
+        });
+        document.querySelectorAll('[data-footer-rural-stay-mark]').forEach(img => {
+            if (!markUrl) {
+                img.removeAttribute('src');
+                return;
+            }
+            img.src = markUrl;
+            img.alt = alt;
+        });
     }
 
     /**
@@ -572,6 +602,7 @@ class HeaderFooterMapper extends BaseDataMapper {
         // Footer 매핑
         this.mapFooterLogo();
         this.mapFooterInfo();
+        this.mapFooterRuralStayMark();
         this.mapSocialLinks();
 
     }
